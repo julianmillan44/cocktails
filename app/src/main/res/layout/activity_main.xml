@@ -5,230 +5,321 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/background">
+    tools:context=".MainActivity">
 
-    <LinearLayout
+    <!-- Fondo con overlay para mejorar legibilidad -->
+    <ImageView
+        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp">
+
+            <!-- Título principal -->
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/titleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/Titulo"
-                android:textSize="30sp"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
-        </LinearLayout>
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            <!-- Card para búsqueda -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/searchCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                app:cardBackgroundColor="#66000000"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleText">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/cocktailNameLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cocktailName"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/cocktailInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColorHint="#80FFFFFF"
+                        app:boxStrokeColor="@color/white"
+                        app:hintTextColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cocktailNameLabel">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtcocktail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Ej: Margarita"
+                            android:inputType="text"
+                            android:textColor="@color/white" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btnGetInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="#FF5722"
+                        android:paddingVertical="12dp"
+                        android:text="@string/getInfo"
+                        android:textSize="16sp"
+                        app:cornerRadius="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cocktailInputLayout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sección de resultados -->
             <TextView
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:text="@string/cocktailName"
-                android:textAlignment="center"
-                android:textColor="@color/white"/>
-
-            <EditText
-                android:id="@+id/txtcocktail"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:inputType="text"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnGetInfo"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:text="@string/getInfo"/>
-
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-            
-            <TextView
+                android:id="@+id/informationTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:textSize="24sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:text="@string/information"
-                android:textColor="@color/white"/>
-            
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:textAlignment="center"
-                android:text="@string/ingredientOne"
-                android:textColor="@color/white" />
-
-            <EditText
-                android:id="@+id/txtIngredientUno"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:inputType="text"
                 android:textColor="@color/white"
-                android:visibility="invisible"/>
-        </LinearLayout>
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchCard" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            <!-- Card para los resultados -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/resultsCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:cardBackgroundColor="#66000000"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/informationTitle">
 
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:textAlignment="center"
-                android:text="@string/ingredientTwo"
-                android:textColor="@color/white" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-            <EditText
-                android:id="@+id/txtIngredientDos"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:visibility="invisible"/>
-        </LinearLayout>
+                    <!-- Ingredientes -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="Ingredientes"
+                        android:textColor="#FF5722"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+                    <!-- Ingrediente 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:textAlignment="center"
-                android:text="@string/ingredientThree"
-                android:textColor="@color/white" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/ingredientOne"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/txtIngredientTres"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:visibility="invisible"/>
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtIngredientUno"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:textColor="@color/white"
+                            android:visibility="visible"
+                            tools:text="Tequila" />
+                    </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+                    <!-- Ingrediente 2 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:textAlignment="center"
-                android:text="@string/ingredientFour"
-                android:textColor="@color/white" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/ingredientTwo"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/txtIngredientFour"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:visibility="invisible"/>
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtIngredientDos"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:textColor="@color/white"
+                            android:visibility="visible"
+                            tools:text="Triple Sec" />
+                    </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+                    <!-- Ingrediente 3 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:textAlignment="center"
-                android:text="@string/ingredientFive"
-                android:textColor="@color/white" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/ingredientThree"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/txtIngredientFive"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:inputType="text"
-                android:textColor="@color/white"
-                android:visibility="invisible"/>
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtIngredientTres"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:textColor="@color/white"
+                            android:visibility="visible"
+                            tools:text="Jugo de limón" />
+                    </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+                    <!-- Ingrediente 4 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:textAlignment="center"
-                android:text="@string/Preparation"
-                android:textColor="@color/white" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/ingredientFour"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/txtPreparation"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:inputType="text"
-                android:enabled="false"
-                android:textColor="@color/white"
-                android:visibility="invisible"/>
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtIngredientFour"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:textColor="@color/white"
+                            android:visibility="visible"
+                            tools:text="Sal" />
+                    </LinearLayout>
 
-    </LinearLayout>
-    
-    
+                    <!-- Ingrediente 5 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/ingredientFive"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtIngredientFive"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:textColor="@color/white"
+                            android:visibility="visible"
+                            tools:text="Hielo" />
+                    </LinearLayout>
+
+                    <!-- Separador -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="8dp"
+                        android:background="#80FFFFFF" />
+
+                    <!-- Preparación -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/Preparation"
+                        android:textColor="#FF5722"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtPreparation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@color/white"
+                        android:visibility="visible"
+                        tools:text="Mezclar todos los ingredientes en una coctelera. Agitar vigorosamente. Servir en un vaso con el borde escarchado con sal. Decorar con una rodaja de limón." />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
