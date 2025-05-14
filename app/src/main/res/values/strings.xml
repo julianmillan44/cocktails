@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Cocteles</string>
+    <string name="Titulo">Cocteles</string>
+    <string name="cocktailName">Cocktail Name</string>
+    <string name="getInfo">Get Info</string>
+    <string name="information">Information about Cocktails</string>
+    <string name="ingredientOne">Ingrediente Uno</string>
+    <string name="ingredientTwo">Ingrediente Dos</string>
+    <string name="ingredientThree">Ingrediente Tres</string>
+    <string name="ingredientFour">Ingrediente Cuatro</string>
+    <string name="ingredientFive">Ingrediente Cinco</string>
+    <string name="Preparation">Preparacion</string>
+</resources>
